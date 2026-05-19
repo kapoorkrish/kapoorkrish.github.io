@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Astrophotography — Krish Kapoor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+
+  <style>
+    .astro-layout {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 80px 48px 120px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      margin-bottom: 60px;
+      transition: color 0.2s, gap 0.2s;
+    }
+    .back-link:hover { color: var(--gold); gap: 12px; }
+    .back-link svg { transform: rotate(180deg); }
+
+    .astro-header { margin-bottom: 56px; }
+
+    .astro-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+
+    .astro-subtitle {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    /* ── Object section ── */
+    .object-section {
+      margin-bottom: 72px;
+    }
+
+    .object-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .object-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── Masonry grid ── */
+    .gallery {
+      columns: 3;
+      column-gap: 16px;
+    }
+    @media (max-width: 900px) { .gallery { columns: 2; } }
+    @media (max-width: 540px) { .gallery { columns: 1; } }
+
+    .gallery-item {
+      break-inside: avoid;
+      margin-bottom: 16px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      cursor: pointer;
+      background: var(--surface);
+    }
+
+    .gallery-item img {
+      width: 100%;
+      display: block;
+      transition: transform 0.5s ease, filter 0.4s ease;
+      filter: brightness(0.92);
+    }
+    .gallery-item:hover img {
+      transform: scale(1.03);
+      filter: brightness(1);
+    }
+
+    .gallery-caption {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      padding: 28px 16px 14px;
+      background: linear-gradient(to top, rgba(10,12,18,0.88) 0%, transparent 100%);
+      opacity: 0;
+      transform: translateY(4px);
+      transition: opacity 0.3s, transform 0.3s;
+    }
+    .gallery-item:hover .gallery-caption {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .caption-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 0.95rem;
+      color: var(--white);
+    }
+
+    /* ── Lightbox ── */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 10, 14, 0.95);
+      z-index: 10000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      backdrop-filter: blur(8px);
+    }
+    .lightbox.open { opacity: 1; pointer-events: all; }
+
+    .lightbox-inner {
+      position: relative;
+      max-width: 90vw;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .lightbox-inner img {
+      max-width: 90vw;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+    .lightbox-caption { text-align: center; }
+    .lightbox-caption .caption-title { font-size: 1.1rem; }
+
+    .lightbox-close {
+      position: fixed;
+      top: 28px; right: 32px;
+      background: none;
+      border: none;
+      color: var(--text-dim);
+      font-size: 1.6rem;
+      cursor: pointer;
+      transition: color 0.2s;
+      line-height: 1;
+      padding: 4px;
+    }
+    .lightbox-close:hover { color: var(--gold); }
+
+    .lightbox-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      color: var(--text-dim);
+      padding: 10px 14px;
+      cursor: pointer;
+      transition: color 0.2s, border-color 0.2s;
+      font-size: 1rem;
+    }
+    .lightbox-nav:hover { color: var(--gold); border-color: rgba(201,169,110,0.4); }
+    .lightbox-prev { left: 24px; }
+    .lightbox-next { right: 24px; }
+
+    .gallery-empty {
+      text-align: center;
+      padding: 80px 0;
+      color: var(--text-dim);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+    }
+
+    @media (max-width: 900px) {
+      .astro-layout { padding: 60px 24px 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cursor" id="cursorRing" style="position:fixed;top:0;left:0;pointer-events:none;z-index:9999;"><div class="cursor-ring" style="position:absolute;top:0;left:0;"></div></div>
+  <div class="cursor" id="cursorDot"  style="position:fixed;top:0;left:0;pointer-events:none;z-index:9999;"><div class="cursor-dot"  style="position:absolute;top:0;left:0;"></div></div>
+
+  <div class="ambient"></div>
+
+  <div class="astro-layout">
+
+    <a href="index.html" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      Krish Kapoor
+    </a>
+
+    <div class="astro-header fade-in">
+      <h1 class="astro-title">Astrophotography</h1>
+      <p class="astro-subtitle">A place to dump my captures over the years.</p>
+    </div>
+
+    <div id="gallery-root">
+      <div class="gallery-empty" id="gallery-empty">✦ &nbsp; Loading… &nbsp; ✦</div>
+    </div>
+
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" id="lbClose">✕</button>
+    <button class="lightbox-nav lightbox-prev" id="lbPrev">&#8592;</button>
+    <button class="lightbox-nav lightbox-next" id="lbNext">&#8594;</button>
+    <div class="lightbox-inner">
+      <img id="lbImg" src="" alt="" />
+      <div class="lightbox-caption">
+        <div class="caption-title" id="lbTitle"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ── Cursor ──
+    const dot = document.getElementById('cursorDot'), ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.transform = `translate(${mx}px,${my}px)`; });
+    (function loop() { rx += (mx-rx)*0.14; ry += (my-ry)*0.14; ring.style.transform = `translate(${rx}px,${ry}px)`; requestAnimationFrame(loop); })();
+
+    // ── Fade-in observer ──
+    function observeFade(el) {
+      new IntersectionObserver(([e], o) => {
+        if (e.isIntersecting) { el.classList.add('visible'); o.unobserve(el); }
+      }, { threshold: 0.1 }).observe(el);
+    }
+    document.querySelectorAll('.fade-in').forEach(observeFade);
+
+    // ── Lightbox ──
+    let allItems = [], current = 0;
+    const lb      = document.getElementById('lightbox');
+    const lbImg   = document.getElementById('lbImg');
+    const lbTitle = document.getElementById('lbTitle');
+
+    function openLightbox(idx) {
+      current = idx;
+      const item = allItems[idx];
+      lbImg.src = item.querySelector('img').src;
+      lbTitle.textContent = item.dataset.title || '';
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() { lb.classList.remove('open'); document.body.style.overflow = ''; }
+    function step(dir) { current = (current + dir + allItems.length) % allItems.length; openLightbox(current); }
+
+    document.getElementById('lbClose').addEventListener('click', closeLightbox);
+    document.getElementById('lbPrev').addEventListener('click', () => step(-1));
+    document.getElementById('lbNext').addEventListener('click', () => step(1));
+    lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape')     closeLightbox();
+      if (e.key === 'ArrowLeft')  step(-1);
+      if (e.key === 'ArrowRight') step(1);
+    });
+
+    // ── Load gallery ──
+    const PHOTO_BASE = 'images/astrophotography/';
+
+    async function loadGallery() {
+      const root    = document.getElementById('gallery-root');
+      const emptyEl = document.getElementById('gallery-empty');
+
+      try {
+        const res = await fetch(PHOTO_BASE + 'photos.json');
+        if (!res.ok) throw new Error('Manifest not found');
+        const sections = await res.json();
+
+        if (!sections.length) { emptyEl.textContent = 'Photos coming soon'; return; }
+        emptyEl.remove();
+
+        let globalIndex = 0;
+
+        sections.forEach((section, si) => {
+          const photos = section.photos || [];
+          if (!photos.length) return;
+
+          const sec = document.createElement('div');
+          sec.className = 'object-section fade-in';
+
+          const label = document.createElement('div');
+          label.className = 'object-label';
+          label.textContent = section.object;
+          sec.appendChild(label);
+
+          const grid = document.createElement('div');
+          grid.className = 'gallery';
+
+          photos.forEach((filename, pi) => {
+            const idx  = globalIndex++;
+            const item = document.createElement('div');
+            item.className = 'gallery-item';
+            item.dataset.title = section.object;
+
+            item.style.opacity   = '0';
+            item.style.transform = 'translateY(16px)';
+            item.style.transition = `opacity 0.5s ease ${0.06 + pi * 0.07}s, transform 0.5s ease ${0.06 + pi * 0.07}s`;
+            setTimeout(() => { item.style.opacity = '1'; item.style.transform = 'translateY(0)'; }, 80 + si * 40);
+
+            item.innerHTML = `
+              <img src="${PHOTO_BASE}${filename}" alt="${section.object}" loading="lazy" />
+              <div class="gallery-caption">
+                <div class="caption-title">${section.object}</div>
+              </div>`;
+
+            item.addEventListener('click', () => openLightbox(idx));
+            grid.appendChild(item);
+            allItems.push(item);
+          });
+
+          sec.appendChild(grid);
+          root.appendChild(sec);
+          observeFade(sec);
+        });
+
+      } catch (err) {
+        emptyEl.textContent = 'Photos coming soon';
+        console.warn('Could not load photos.json:', err);
+      }
+    }
+
+    loadGallery();
+  </script>
+
+</body>
+</html>

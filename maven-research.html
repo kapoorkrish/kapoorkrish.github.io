@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MAVEN SEP Research - Krish Kapoor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .research-layout {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 80px 48px 120px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      margin-bottom: 60px;
+      transition: color 0.2s, gap 0.2s;
+    }
+    .back-link:hover { color: var(--gold); gap: 12px; }
+    .back-link svg { transform: rotate(180deg); }
+
+    .research-header {
+      margin-bottom: 56px;
+    }
+
+    .research-author {
+      margin-top: 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.8;
+    }
+
+    .research-header h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      color: var(--white);
+      letter-spacing: -0.02em;
+      line-height: 1.05;
+      margin-bottom: 16px;
+    }
+
+    .research-subtitle {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .research-subtitle::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .research-content {
+      line-height: 1.8;
+      color: var(--text-muted);
+    }
+
+    .research-content h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-top: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .research-content p {
+      margin-bottom: 1.2rem;
+      font-size: 0.95rem;
+    }
+
+    .research-content a {
+      color: var(--gold);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(201,169,110,0.3);
+      transition: border-color 0.2s;
+    }
+    .research-content a:hover { border-color: var(--gold); }
+
+    .figure-container {
+      margin: 2rem 0;
+      padding: 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid rgba(201,169,110,0.4);
+      border-radius: 0 8px 8px 0;
+    }
+
+    .figure-container img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 0.5rem;
+      border-radius: 4px;
+    }
+
+    .figure-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.75rem;
+    }
+
+    .figure-note {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.82rem;
+      color: var(--text-dim);
+      font-style: italic;
+      margin-top: 0.5rem;
+    }
+
+    .research-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 2rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .research-table thead { background: rgba(201,169,110,0.06); }
+
+    .research-table th,
+    .research-table td {
+      padding: 0.75rem 1rem;
+      text-align: left;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 0.88rem;
+    }
+
+    .research-table th {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    @media (max-width: 900px) {
+      .research-layout { padding: 60px 24px 80px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Custom cursor -->
+  <div class="cursor" id="cursorRing" style="position:fixed;top:0;left:0;pointer-events:none;z-index:9999;">
+    <div class="cursor-ring" style="position:absolute;top:0;left:0;"></div>
+  </div>
+  <div class="cursor" id="cursorDot" style="position:fixed;top:0;left:0;pointer-events:none;z-index:9999;">
+    <div class="cursor-dot" style="position:absolute;top:0;left:0;"></div>
+  </div>
+
+  <div class="ambient"></div>
+
+  <div class="research-layout">
+
+    <a href="index.html" class="back-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+      Krish Kapoor
+    </a>
+
+    <div class="research-header fade-in">
+      <h1>MAVEN SEP Research Report</h1>
+      <div class="research-subtitle">Space Sciences Laboratory · UC Berkeley</div>
+      <div class="research-author">Krish Kapoor</div>
+    </div>
+
+    <div class="research-content fade-in">
+      <h2>Introduction</h2>
+      <p>
+        The <a href="https://science.nasa.gov/mission/maven/" target="_blank">Mars Atmosphere and Volatile Evolution (MAVEN)</a> satellite entered orbit on September 21st, 2014, with the objective of understanding the Martian upper atmosphere. The focus of my research was on the Solar Energetic Particle (SEP) instrument, which is intended to measure high-energy electrons and ions that enter the Mars atmosphere from the sun. This informs how events such as solar flares or coronal mass ejections affect the loss of Mars' atmosphere due to the interaction of high-energy particles with atmospheric particles through phenomena such as ionization or sputtering.
+      </p>
+      <p>
+        On March 13th, 2016, <a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2020GL088927" target="_blank">the first observation of ~10 keV X-rays from Scorpius X-1 was made</a>, a measurement the SEP instrument was not originally intended to make. Since the density of the atmosphere increases as the tangent altitude from the surface of Mars decreases, lower X-ray counts are observed as MAVEN's tangent altitude with Scorpius X-1 decreases, i.e., during the occultation. This observation is exploited to calculate the numerical density of Mars. The observable altitude range is 50 km - 100 km, a range that is significantly difficult to probe using other techniques. Only <a href="https://www.sciencedirect.com/science/article/abs/pii/001910359190094A?via%3Dihub" target="_blank">one other study using the Phobos 2 spacecraft</a> has been able to observe the 80 – 130 km region using X-ray occultations.
+      </p>
+
+      <h2>Rate Energy &amp; Scorpius X-1</h2>
+      <p>
+        Using the IDL data analysis software, Numpy, and Matplotlib, I carefully identified and plotted a set of variables that agree with the findings in the <a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2020GL088927" target="_blank">original study by my mentor, Ali Rahmati</a>.
+      </p>
+
+      <div class="figure-container">
+        <div class="figure-label">Figure 1</div>
+        <img src="images/MAVEN/figure1.png" alt="Tplot showing increase in A-O Rate Energy when Scorpius X-1 is in FOV with SEP 2" />
+        <div class="figure-note">Note. Tplot showing increase in A-O Rate Energy when Scorpius X-1 is in FOV with SEP 2.</div>
+      </div>
+
+      <p>
+        The first panel in Figure 1 depicts the SEP 2 A-O Rate Energy, where we can see a higher flux of particles arising periodically, with a large spike at a particular region in these intervals. The second panel, which depicts the SEP 2 A-O detector's low-energy particle counts, matches this exact pattern. To confirm that the source of these particles is Scorpius X-1, the sx1 infov boolean is plotted (panel 3), along with its dot product with SEP 2 (panel 5). The dot product is -1 when the higher flux is detected, where the negative indicates that the rear side of the instrument is aligned with Scorpius X-1. As seen in Figure 2, the 2A-Open detector of SEP2 is on the reverse side of the instrument, which confirms these findings.
+      </p>
+
+      <div class="figure-container">
+        <div class="figure-label">Figure 2</div>
+        <img src="images/MAVEN/figure2.png" alt="MAVEN SEP FOV for SEP 1 and SEP 2 instruments depicting open and foil detectors" />
+        <div class="figure-note">Note. MAVEN SEP FOV for SEP 1 and SEP 2 instruments depicting open and foil detectors.</div>
+      </div>
+
+      <h2>Exploiting X-ray Observations</h2>
+      <p>
+        So far, it has been shown that the higher A-O Rate Energy correlates with Scorpius X-1 in the FOV of the SEP 2 instrument, confirming that it is the X-ray source of the observed increase in energy flux. Panels 4 and 6 depict the tangent altitude with Mars and the SEP occultation, which are plotted to explain the large red spike in energy flux at each interval. The spike correlates with a negative tangent altitude and occultation, highlighting the Mars-shine phenomenon. This is attributed to noise due to the detection of photons reflected from the sunlit disc of Mars; these counts are unrelated to the X-rays from Scorpius X-1. Since the A-O detector is open, it is highly susceptible to these photons and would therefore be insufficient to use for characterizing the atmosphere.
+      </p>
+
+      <p>
+        According to Figure 2, the SEP 2 B-F detector lies at the same orientation as A-O, but is significantly more 'blind' to Mars shine due to the foil over its detector, which blocks lower energy photons. In order to leverage X-ray occultation data to characterize Mars' atmosphere, we must identify the altitude at which the X-Rays pass through the line of sight and correlate this with the B-F count rates.
+      </p>
+
+      <div class="figure-container">
+        <div class="figure-label">Figure 3</div>
+        <img src="images/MAVEN/figure3.png" alt="Tplot showing drop in B-F count rates at small tangent altitude" />
+        <div class="figure-note">Note. Tplot showing drop in B-F count rates at small tangent altitude</div>
+      </div>
+
+      <p>
+        Figure 3 depicts a sharp drop in count rates as the tangent altitude decreases in a small interval before occultation. This is attributed to the fact that the Mars atmosphere is denser at lower tangent altitudes, making it increasingly difficult for X-rays to reach MAVEN. To further investigate and compare the count rates directly to tangent altitude, the data for several orbits was exported to CSVs and analyzed using Numpy and Matplotlib.
+      </p>
+
+      <div class="figure-container">
+        <div class="figure-label">Figure 4</div>
+        <img src="images/MAVEN/figure4.png" alt="SEP 2 count rates vs. tangent altitude with Scorpius X1, in and out of FOV in -100 – 350 km range" />
+        <div class="figure-note">Note. SEP 2 count rates vs. tangent altitude with Scorpius X1, in and out of FOV in -100 – 350 km range</div>
+      </div>
+
+      <p>
+        Figure 4 is plotted to show the raw data points that align with when Scorpius X1 was in FOV with the SEP 2 instrument. It's observed that all data points in the -100 – ~150 km range are in FOV with Scorpius X1. To characterize Mars' atmosphere, we focus on the region where Scorpius X1 is in FOV, and we see a significant change in X-ray count rates. Figure 5 focuses on this interval, demonstrating an increasing trend in the 50 – 100 km range, as depicted by the moving average.
+      </p>
+
+      <div class="figure-container">
+        <div class="figure-label">Figure 5</div>
+        <img src="images/MAVEN/figure5.png" alt="Moving average of SEP 2 count rates vs. tangent altitude with Scorpius X1, in FOV, in -50 – 150 km range" />
+        <div class="figure-note">Note. Moving average of SEP 2 count rates vs. tangent altitude with Scorpius X1, in FOV, in -50 – 150 km range</div>
+      </div>
+
+      <p>
+        By exploiting this correlation, we can generate a profile for the neutral density of Mars' atmosphere in the 50 – 100 km range. These correlations provide the intuition and framework for characterizing Mars' atmosphere using X-ray occultations, the primary focus of my research. For a further look at generating the density vs. altitude profile, the exact derivations can be found in <a href="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2020GL088927" target="_blank">Rahmati's paper</a>.
+      </p>
+    </div>
+  </div>
+
+  <script>
+    // Cursor
+    const dot = document.getElementById('cursorDot'), ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.transform = `translate(${mx}px,${my}px)`; });
+    (function loop() { rx += (mx-rx)*0.14; ry += (my-ry)*0.14; ring.style.transform = `translate(${rx}px,${ry}px)`; requestAnimationFrame(loop); })();
+    // Fade-in
+    document.querySelectorAll('.fade-in').forEach(el => {
+      new IntersectionObserver(([e], o) => { if (e.isIntersecting) { el.classList.add('visible'); o.unobserve(el); } }, { threshold: 0.1 }).observe(el);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+[
+  {
+    "object": "Orion Nebula",
+    "photos": ["Orion.jpg"]
+  },
+  {
+    "object": "Andromeda Galaxy",
+    "photos": ["Andromeda.jpg"]
+  },
+  {
+    "object": "Moon",
+    "photos": ["Moon1.jpeg", "Moon2.jpg", "Moon3.jpg", "Moon4.jpeg"]
+  },
+  {
+    "object": "Saturn",
+    "photos": ["Saturn.jpeg"]
+  },
+  {
+    "object": "Jupiter",
+    "photos": ["Jupiter1.jpg", "Jupiter2.jpg", "Jupiter3.jpg"]
+  },
+  {
+    "object": "International Space Station (ISS)",
+    "photos": ["ISS.jpg"]
+  }
+]

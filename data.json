@@ -1,0 +1,92 @@
+{
+  "experiences": [
+    {
+      "type": "work",
+      "period": "May 2026 – Present",
+      "title": "Computer Software Engineering Intern",
+      "company": "Georgia Tech Research Institute",
+      "description": "Aerospace, Transportation & Advanced Systems Laboratory (ATAS).",
+      "tags": ["Software Engineering"],
+      "image": "images/GTRI.jpg"
+    },
+    {
+      "type": "research",
+      "period": "Jan 2026 – May 2026",
+      "title": "Lead EECS Engineer - Professor Williams' Research Group",
+      "company": "Engineering Solutions @ Berkeley Consulting Club",
+      "description": "Developed STM32 C++ embedded firmware and Python UI to enable amplitude & frequency control of a custom RF generator system for a novel lab charge detection mass spectrometer. Implemented GPIO-based serial interface to an AD9851 DDS waveform generation board for up to 10 MHz of RF sinusoidal wave synthesis. Designed breadboard prototype to amplify signal with LM7171 high-speed op-amp and validate waveform via oscilloscope.",
+      "tags": ["Embedded Systems", "Radio Frequency (RF)", "STM32", "C++", "Python"],
+      "image": "images/RF.jpeg"
+    },
+    {
+      "type": "research",
+      "period": "Feb 2026 – May 2026",
+      "title": "Undergraduate Researcher",
+      "company": "Space Sciences Laboratory @ Berkeley",
+      "description": "Conducted research on NASA's MAVEN mission, analyzing X-ray occultation data from Berkeley's Solar Energetic Particle (SEP) instrument to investigate neutral density in the 50–100 km region of Mars' atmosphere. Used IDL, NumPy, and Matplotlib to correlate drops in energy flux count rates with tangent altitude and instrument field-of-view alignment during occultations of Scorpius X-1.",
+      "tags": ["Research", "IDL", "NumPy", "Matplotlib", "Python"],
+      "image": "images/MAVEN.png",
+      "link": "maven-research.html"
+    },
+    {
+      "type": "work",
+      "period": "Sep 2025 – Dec 2025",
+      "title": "EECS Engineer - Malin Space Science Systems",
+      "company": "Engineering Solutions @ Berkeley Consulting Club",
+      "description": "Prototyped focus actuator for space camera applications used in NASA rovers and for other commercial aerospace customers, requiring ± 2 mil actuation with high precision. Designed a bidirectional homing and midpoint-referencing algorithm using limit switches and hall sensor to compute and compensate for mechanical backlash during high-accuracy actuation.",
+      "tags": ["Embedded Systems", "Arduino", "C++"],
+      "image": "images/MSSS.jpeg"
+    }
+  ],
+  "projects": [
+    {
+      "period": "2024",
+      "title": "CatchBot",
+      "description": "Built robot using Raspberry Pi and OpenCV to track ball in 3D projectile motion and move cup to correct position to catch it. Programmed dual stepper motor system and computer vision trajectory prediction in Python. 3D modeled in OnShape and printed XY core pulley mechanism.",
+      "tags": ["Raspberry Pi", "OpenCV", "OnShape", "3D Printing"],
+      "icon": "◈",
+      "image": "images/CatchBot.jpg",
+      "link": "https://www.youtube.com/watch?v=ukb7cln0-VM"
+    },
+    {
+      "period": "2025 – Present",
+      "title": "Acuitor",
+      "description": "Founded tutoring platform which offers tutors the freedom to set their own rates and go live anytime, instantly connecting them with students in need. Students get help from a qualified tutor in seconds with no scheduling or waiting. Currently developing iOS app with SwiftUI, integrating the Stripe payment processor and Google Cloud features including Firestore & Realtime Database, Cloud Functions, and Cloud Messaging. Accepted into UC Berkeley SLI 2025 Cohort, a selective program that provides incorporation services and teaches core legal, financial, and organizational aspects of starting and scaling a startup.",
+      "tags": ["Swift", "SwiftUI", "Cloud Firestore", "Stripe Connect"],
+      "icon": "✦",
+      "image": "images/Acuitor.png",
+      "link": "https://acuitor.app/"
+    },
+    {
+      "period": "2024",
+      "title": "Human Heart Beat Simulation Apparatus - US Patent",
+      "description": "Invention intended to be used as an educational tool for students to learn about the human heart. By providing functions such as selecting a specific heart rate and choosing an irregular heart rate rhythm, students can learn how the real human heart functions by using this interactive model. Created breadboard circuit with servo and LEDs using both Arduino and Raspberry Pi Pico, 3D printed heart model and housing for electronics, and developed iOS Swift app to interact wirelessly.",
+      "tags": ["Embedded Systems", "Arduino", "Raspberry Pi", "SwiftUI", "3D Printing"],
+      "icon": "⬡",
+      "image": "images/Patent.png",
+      "link": "https://patents.google.com/patent/US12175887B2"
+    }
+  ],
+  "skills": [
+    {
+      "category": "Languages",
+      "items": ["Java", "Python", "C++", "Swift", "JavaScript"]
+    },
+    {
+      "category": "Embedded Systems",
+      "items": ["STM32", "Raspberry Pi", "Arduino", "Radio Frequency (RF)", "OpenCV"]
+    },
+    {
+      "category": "Data Analysis",
+      "items": ["IDL", "NumPy", "Matplotlib"]
+    },
+    {
+      "category": "App Development",
+      "items": ["SwiftUI", "Cloud Firestore", "Stripe Connect"]
+    },
+    {
+      "category": "Hardware & CAD",
+      "items": ["OnShape", "Fusion 360", "3D Printing"]
+    }
+  ]
+}
