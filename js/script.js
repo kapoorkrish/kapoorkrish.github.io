@@ -119,7 +119,7 @@ function companyInitials(company) {
 // ─── POPULATE DATA FROM JSON ───
 async function loadData() {
   try {
-    const response = await fetch('data.json');
+    const response = await fetch('data/data.json');
     const data = await response.json();
     populateExperiences(data.experiences);
     populateProjects(data.projects);

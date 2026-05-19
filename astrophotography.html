@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="css/styles.css" />
 
   <style>
     .astro-layout {
@@ -207,8 +207,8 @@
 </head>
 <body>
 
-  <div class="cursor" id="cursorRing" style="position:fixed;top:0;left:0;pointer-events:none;z-index:9999;"><div class="cursor-ring" style="position:absolute;top:0;left:0;"></div></div>
-  <div class="cursor" id="cursorDot"  style="position:fixed;top:0;left:0;pointer-events:none;z-index:9999;"><div class="cursor-dot"  style="position:absolute;top:0;left:0;"></div></div>
+  <div class="cursor" id="cursorRing" style="position:fixed;top:0;left:0;pointer-events:none;z-index:10001;"><div class="cursor-ring" style="position:absolute;top:0;left:0;"></div></div>
+  <div class="cursor" id="cursorDot"  style="position:fixed;top:0;left:0;pointer-events:none;z-index:10001;"><div class="cursor-dot"  style="position:absolute;top:0;left:0;"></div></div>
 
   <div class="ambient"></div>
 
@@ -294,7 +294,7 @@
       const emptyEl = document.getElementById('gallery-empty');
 
       try {
-        const res = await fetch(PHOTO_BASE + 'photos.json');
+        const res = await fetch('data/astrophotography/photos.json');
         if (!res.ok) throw new Error('Manifest not found');
         const sections = await res.json();
 
